@@ -6,25 +6,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div></div>
         <script>
             let points=0;
 
-            function ask(q,a){
-                let svar=prompt(q);
-                if(svar == a){
+            function ask(spørgsmål,rigtigtSvar){
+                let svar=prompt(spørgsmål);
+                if(svar == rigtigtSvar){
                     points++;
-                    alert("Bravo!");
-                }else{ alert("Buuu!")}
+                    alert("Bravo! Du får et point for det svar!");
+                }else{
+                    points--;
+                    alert("Buuu! Du får et minuspoint for det svar.");
+                }
             }
 
             ask("Hvor mange år har Louise arbejdet på KEA?" , 2);
             ask("Hvor mange semestre er der på MMD?" , 4);
             ask("Hvad hedder vores uddannelsesleder til fornavn?" , "Frederikke");
-            ask("Hvad hedder Kamilla til efternavn?" , "Viktor");
-            ask("Hvad er Martins skonummer?" , 45);
+            ask("Hvad hedder Klaus til efternavn?" , "Mandal");
+            ask("Hvad er Klaus' skonummer?" , 45);
             ask("Hvad hedder Helles kat" , "Bast");
-            alert("du fik "+ points + " points");
+            alert(`du fik ${points} points.`);
         </script>
     </body>
 </html>
