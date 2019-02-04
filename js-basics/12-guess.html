@@ -7,25 +7,26 @@
     </head>
     <body>
         <script>
-            let tal=Math.round(Math.random()*20),
-                guess,
-                antal=1;
-            function guessTal(){
-                guess=prompt("Gæt mit tal!");
-                if(guess == tal){
-                    alert("Rigtigt\ndu prøvede " + antal + " gange");
+            let tal=Math.round(Math.random()*20);
+            let gæt;
+            let forsøg=1;
+
+            function gætEtTal(){
+                gæt=prompt("Gæt et tal mellem 0 og 20!");
+                if(gæt == tal){
+                    alert(`Rigtigt!\ndu prøvede ${forsøg} gange`);
                     if(confirm("Vil du prøve igen?")){
                         location.reload();
                     }
-                }else if(tal>guess){
+                }else if(tal>gæt){
                     alert("for lavt - prøv igen!");
-                    antal++; guessTal();
+                    forsøg++; gætEtTal();
                 }else{
                     alert("for højt - prøv igen");
-                    antal++; guessTal();
+                    forsøg++; gætEtTal();
                 }
             }
-            guessTal();
+            gætEtTal();
         </script>
     </body>
 </html>
