@@ -7,12 +7,14 @@
     </head>
     <body>
         <script>
-            let weight = prompt("din vægt i kg?"),
-                length = prompt("din højde i cm?"),
+            let vægt = prompt("Indtast din vægt i kg?"),
+                højde = prompt("Indtast din højde i cm?"),
                 bmi,
                 klasse;
-            if(Number(weight) && Number(length)){
-                bmi=Math.round( weight/Math.pow(length/100,2) );
+            if(isNaN(vægt)||isNaN(højde)){
+                alert("du skal indtaste tal!");
+            }else{
+                bmi=Math.round( vægt/Math.pow(højde/100,2) );
                 if(bmi < 19){
                     klasse= "undervægtig";
                 } else if(bmi < 25){
@@ -26,12 +28,11 @@
                 }else{
                     klasse="ekstrem fedme";
                 }
-                alert("bmi er " + bmi);
+                alert(`bmi er ${bmi}`);
+
                 if(confirm("vil du have din vægtklasse?")){
-                    alert("vægtklassen er " + klasse);
+                    alert(`vægtklassen er ${klasse}`);
                 }
-            }else{
-                alert("kan ikke udregne BMI");
             }
         </script>
     </body>

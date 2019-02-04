@@ -9,8 +9,13 @@
         <div></div>
         <script>
             let time = new Date().getHours();
+
+            //Godnat mellem 24 og 5.
+            if(time < 5){
+              alert("godnat");
+            }
             //Godmorgen mellem kl. 5 og kl 10,
-            if(time>=5 && time<10) {
+            else if(time < 10) {
                 alert("godmorgen");
             }
             //Goddag mellem kl 10 og 18,
@@ -19,12 +24,10 @@
             }
             //Godaften mellem 18 og 24 og
              else if(time < 24){
-                alert("goddag");
+                alert("godaften");
             }
-            //Godnat mellem 24 og 5.
-            else{
-                alert("godnat");
-            }
+
+
         </script>
     </body>
 </html>
