@@ -7,26 +7,26 @@
     </head>
     <body>
         <script>
-            let dinAlder = prompt("Din alder?"),
-                datesAlder = prompt("Din dates alder?"),
+            let dinAlder = prompt("Din alder?");
+            let datesAlder = prompt("Din dates alder?"),
                 //hvor ung skal din date mindst være?
-                min=Math.round(dinAlder/2 + 7),
+            min=Math.round(dinAlder/2 + 7),
                 //hvor gammel må din date højst være?
-                max=Math.round((dinAlder -7)*2);
+            max=Math.round((dinAlder -7)*2);
             //hvis bruger eller date er under den kriminelle lavalder, må de ikke bruge programmet
-            if(!Number(dinAlder) || dinAlder<15 ||!Number(datesAlder)|| datesAlder<15){
+            if(dinAlder<15 || datesAlder<15){
                 alert("programmet er ikke for mindreårige");
+            }else if(isNaN(dinAlder)||isNaN(datesAlder)){
+                alert("ugyldige tal kan jeg ikke regne på!");
             }else{ //1. mulighed: daten ligger inden for rammerne
                 if( datesAlder >= min && datesAlder <= max ){
                     alert("Ok, det er passende");
                 }else if( datesAlder <= min ){ //2. mulighed: date er for ung
-                    alert("Du er " + dinAlder + " og din date er "+datesAlder+
-                          "\nDin date er for " +
-                          (min - datesAlder) + " år for ung");
+                    alert(` Du er ${dinAlder} og din date er ${datesAlder}.
+                            Din date er ${(min - datesAlder)} år for ung`);
                 }else if (datesAlder >= max){ //3. mulighed: date er for ung
-                    alert("Du er " + dinAlder + " og din date er "+datesAlder+
-                          "\nDin date er " +
-                          (datesAlder - max) + " år for gammel!");
+                    alert(` Du er ${dinAlder} og din date er ${datesAlder}.
+                            Din date er${(datesAlder - max)} år for gammel!`);
                 }
             }
         </script>
