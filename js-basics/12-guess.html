@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            let tal=Math.round(Math.random()*20),
+                guess,
+                antal=1;
+            function guessTal(){
+                guess=prompt("Gæt mit tal!");
+                if(guess == tal){
+                    alert("Rigtigt\ndu prøvede " + antal + " gange");
+                    if(confirm("Vil du prøve igen?")){
+                        location.reload();
+                    }
+                }else if(tal>guess){
+                    alert("for lavt - prøv igen!");
+                    antal++; guessTal();
+                }else{
+                    alert("for højt - prøv igen");
+                    antal++; guessTal();
+                }
+            }
+            guessTal();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div></div>
+        <script>
+            //erklæring af variablerne length, width og areal
+            let længde = prompt("angiv længde");
+            let   bredde = prompt("angiv bredde");
+            function areal(l, b){
+                return l*b;
+            }
+
+            //udskriv resultat
+            if(confirm(`Arealet er ${areal(længde,bredde)}. Vil du udregne flere arealer`)){
+                location.reload();
+            }
+        </script>
+    </body>
+</html>

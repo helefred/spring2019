@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            let weight = prompt("din vægt i kg?"),
+                length = prompt("din højde i cm?"),
+                bmi,
+                klasse;
+            if(Number(weight) && Number(length)){
+                bmi=Math.round( weight/Math.pow(length/100,2) );
+                if(bmi < 19){
+                    klasse= "undervægtig";
+                } else if(bmi < 25){
+                    klasse= "normal";
+                } else if(bmi < 30){
+                    klasse="overvægtig";
+                } else if(bmi < 35){
+                    klasse="fed";
+                } else if(bmi < 40){
+                    klasse="svær fedme";
+                }else{
+                    klasse="ekstrem fedme";
+                }
+                alert("bmi er " + bmi);
+                if(confirm("vil du have din vægtklasse?")){
+                    alert("vægtklassen er " + klasse);
+                }
+            }else{
+                alert("kan ikke udregne BMI");
+            }
+        </script>
+    </body>
+</html>

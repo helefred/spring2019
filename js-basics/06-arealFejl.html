@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div></div>
+        <script>
+            //erklæring af variablerne length, width og areal
+            let længde = prompt("angiv længde");
+            let   bredde = prompt("angiv bredde");
+            function areal(l, b){
+                let fejl = false;
+                let a = l * b;
+                if (a == 0){
+                    return "Fejl: længde og bredde skal angives";
+                }
+                else if(isNaN(a)){
+                    return "Fejl: længde og bredde skal være tal";
+                }else{
+                    return `Arealet er: ${a}`;
+                }
+            }
+            //udskriv resultat
+            if(confirm(`${areal(længde,bredde)}.\nVil du udregne flere arealer?`)){
+                location.reload();
+            }
+        </script>
+    </body>
+</html>

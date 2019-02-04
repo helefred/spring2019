@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            let weight = 86,
+                length = 1.66,
+                bmi=Math.round( weight/Math.pow(length,2) ),
+                klasse;
+            if(bmi < 19){
+                klasse= "undervægtig";
+            } else if(bmi < 25){
+                klasse= "normal";
+            } else if(bmi < 30){
+                klasse="overvægtig";
+            } else if(bmi < 35){
+                klasse="fed";
+            } else if(bmi < 40){
+                klasse="svær fedme";
+            }else{
+                klasse="ekstrem fedme";
+            }
+            console.log("bmi er " + bmi + ", fedmeklassen er: " + klasse);
+        </script>
+    </body>
+</html>
