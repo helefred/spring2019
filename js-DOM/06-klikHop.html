@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style class="style">
+            .firkant{background-color:green; height:200px; width:200px; padding-top: 80px; box-sizing: border-box; text-align: center;}
+            .cirkel{background-color:red; height:200px; width:200px;border-radius:200px; text-align: center;padding-top: 80px;box-sizing: border-box;}
+        </style>
+    </head>
+    <body>
+        <div id="indhold">
+            <div class="firkant">Grøn firkant</div>
+            <div class="cirkel"><b>Rød cirkel</b></div>
+        </div>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", start);
+
+            function start(){
+                let firkant = document.querySelector(".firkant");
+                let cirkel = document.querySelector((".cirkel"));
+                firkant.innerHTML="<img src='http://helf-kea.dk/test/frog.png' alt=''>";
+                cirkel.innerHTML="<img src='http://helf-kea.dk/test/gris.png' alt=''>";
+
+                document.querySelector(".firkant").addEventListener("click",flyt);
+
+                function flyt(){
+                    let firkantIndhold = firkant.innerHTML;
+                    firkant.innerHTML = cirkel.innerHTML;
+                    cirkel.innerHTML = firkantIndhold;
+                }
+
+                document.querySelector(".cirkel").addEventListener("click",stop);
+
+                function stop(){
+                    document.querySelector(".firkant").removeEventListener("click",flyt);
+                }
+            }
+        </script>
+
+    </body>
+</html>

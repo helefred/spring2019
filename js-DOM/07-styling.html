@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style class="style">
+            .firkant{background-color:green; height:200px; width:200px; padding-top: 80px; box-sizing: border-box; text-align: center;}
+            .cirkel{background-color:red; height:200px; width:200px;border-radius:200px; text-align: center;padding-top: 80px;box-sizing: border-box;}
+            .cirkel:active{background-color:pink}
+            .firkant:active{background-color:lightgreen}
+        </style>
+    </head>
+    <body>
+        <div id="indhold">
+            <div class="firkant"></div>
+            <div class="cirkel"></div>
+        </div>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", start);
+
+            function start(){
+                let firkant = document.querySelector(".firkant");
+                let cirkel = document.querySelector((".cirkel"));
+                firkant.innerHTML="<img src='http://helf-kea.dk/test/frog.png' alt=''>";
+                cirkel.innerHTML="<img src='http://helf-kea.dk/test/gris.png' alt=''>";
+
+                firkant.addEventListener("click",overlap);
+                cirkel.addEventListener("click",del);
+
+                function overlap(){
+                    cirkel.style.position="absolute";cirkel.style.top="8px";
+                }
+                function del(){
+                    cirkel.style.position="static";
+                }
+
+
+            }
+        </script>
+
+    </body>
+</html>

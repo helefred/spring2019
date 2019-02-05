@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style class="style">
+            .firkant{background-color:green; height:100px; width:100px; padding-top: 40px; box-sizing: border-box; text-align: center;}
+            .cirkel{background-color:red; height:100px; width:100px;border-radius:100px; text-align: center;padding-top: 40px;box-sizing: border-box;}
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div><a href="http://kea.dk">kea</a></div>
+            <div><a href="http://github.com/helefred">helle på github</a></div>
+            <div><img src="http://helf-kea.dk/test/frog.png" alt=""></div>
+        </div>
+        <script>
+            console.log(document.querySelector("#content"));
+            console.log(document.querySelector("#content div"));
+            console.log(document.querySelector("#content div + div"));
+            console.log(document.querySelector("#content div + div + div"));
+            console.log(document.querySelector("#content div a"));
+            console.log(document.querySelector("#content div + div a"));
+            console.log(document.querySelector("img"));
+        </script>
+
+    </body>
+</html>

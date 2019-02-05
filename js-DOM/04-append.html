@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>append</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style class="style">
+           .firkant{line-height: 300px; background-color:green; height:200px; width:200px;  text-align: center;}
+            .cirkel{line-height: 300px; background-color:red; height:200px; width:200px; border-radius:50%; text-align: center; }
+
+        </style>
+    </head>
+    <body>
+        <div id="indhold">
+            <div class="firkant"></div>
+            <div class="cirkel"></div>
+        </div>
+        <script>
+            let newE=document.createElement("img");
+            newE.src="http://helf-kea.dk/test/fox.png";
+
+            let frø = "http://helf-kea.dk/test/frog.png";
+            let gris = "http://helf-kea.dk/test/gris.png";
+
+            document.querySelector(".firkant").innerHTML=`<img src="${frø}" alt="">`;
+            document.querySelector(".cirkel").innerHTML=`<img src="${gris}" alt="">`;
+            document.querySelector(".cirkel").appendChild(newE);
+        </script>
+
+    </body>
+</html>
