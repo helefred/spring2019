@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-3</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Optima, sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8rem;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .h1 {
+            padding: 0;
+            margin: 0 0 3rem 0;
+            font-size: 3rem;
+            line-height: 3rem;
+            color: burlywood;
+        }
+
+        footer {
+            display: inline-block;
+            width: 50vw;
+            text-align: left;
+            margin: 50px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 10vw;
+            height: 10vw;
+            line-height: 10vw;
+            letter-spacing: -2vw;
+            text-align: center;
+            margin: 3vw;
+            border-radius: 10px;
+            font-size: 10vw;
+            border: 5px solid tomato;
+            color: burlywood;
+            cursor: pointer;
+        }
+        /*********************/
+
+        .ok {
+            border-color: dodgerblue;
+            cursor: default;
+        }
+        /*********************/
+
+    </style>
+
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <h1 class="h1"> JS øvelse 3 </h1>
+            <h2 class="h1"> Rod i tallene - klik dem på plads, i rækkefølge </h2>
+        </header>
+        <main>
+            <section>
+                <div class="box" id="box1"> 10 </div>
+                <div class="box" id="box2"> 1 </div>
+                <div class="box" id="box3"> 8 </div>
+                <div class="box" id="box4"> 6 </div>
+                <div class="box" id="box5"> 4 </div>
+                <div class="box" id="box6"> 7 </div>
+                <div class="box" id="box7"> 2 </div>
+                <div class="box" id="box8"> 9 </div>
+                <div class="box" id="box9"> 3 </div>
+                <div class="box" id="box10"> 5 </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        window.addEventListener("load", start);
+        let box1 = document.querySelector("#box1");
+        let box2 = document.querySelector("#box2");
+        let box3 = document.querySelector("#box3");
+        let box4 = document.querySelector("#box4");
+        let box5 = document.querySelector("#box5");
+        let box6 = document.querySelector("#box6");
+        let box7 = document.querySelector("#box7");
+        let box8 = document.querySelector("#box8");
+        let box9 = document.querySelector("#box9");
+        let box10 = document.querySelector("#box10");
+
+        function start() {
+            console.log("start");
+            box1.addEventListener("click", fix1);
+        }
+
+        function fix1() {
+            let talA = box1.textContent;
+            let talB = box2.textContent;
+            box2.textContent = talA;
+            box1.textContent = talB;
+            box1.classList.add("ok");
+            box1.removeEventListener("click", fix1);
+            box2.addEventListener("click", fix2);
+        }
+
+        function fix2() {
+            console.log()
+            let talA = box2.textContent;
+            let talB = box7.textContent;
+            console.log(talA, talB);
+            box7.textContent = talA;
+            box2.textContent = talB;
+            box2.classList.add("ok");
+            box2.removeEventListener("click", fix2);
+            box3.addEventListener("click", fix3);
+        }
+
+        function fix3() {
+            let talA = box3.textContent;
+            let talB = box9.textContent;
+            box9.textContent = talA;
+            box3.textContent = talB;
+            box3.classList.add("ok");
+            box3.removeEventListener("click", fix3);
+            box4.addEventListener("click", fix4);
+        }
+
+        function fix4() {
+            let talA = box4.textContent;
+            let talB = box5.textContent;
+            box5.textContent = talA;
+            box4.textContent = talB;
+            box4.classList.add("ok");
+            box4.removeEventListener("click", fix4);
+            box5.addEventListener("click", fix5);
+        }
+
+        function fix5() {
+            let talA = box5.textContent;
+            let talB = box10.textContent;
+            box10.textContent = talA;
+            box5.textContent = talB;
+            box5.classList.add("ok");
+            box5.removeEventListener("click", fix5);
+            box6.addEventListener("click", fix6);
+        }
+
+        function fix6() {
+            let talA = box6.textContent;
+            let talB = box10.textContent;
+            box10.textContent = talA;
+            box6.textContent = talB;
+            box6.classList.add("ok");
+            box6.removeEventListener("click", fix6);
+            box7.addEventListener("click", fix7);
+        }
+
+        function fix7() {
+            let talA = box7.textContent;
+            let talB = box10.textContent;
+            box10.textContent = talA;
+            box7.textContent = talB;
+            box7.classList.add("ok");
+            box7.removeEventListener("click", fix7);
+            box8.addEventListener("click", fix8);
+        }
+
+        function fix8() {
+            let talA = box8.textContent;
+            let talB = box9.textContent;
+            box9.textContent = talA;
+            box8.textContent = talB;
+            box8.classList.add("ok");
+            box9.classList.add("ok");
+            box10.classList.add("ok");
+            box8.removeEventListener("click", fix8);
+        }
+
+    </script>
+</body>
+
+</html>

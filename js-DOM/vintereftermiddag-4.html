@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-4</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Optima, sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8rem;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .h1 {
+            padding: 0;
+            margin: 0 0 3rem 0;
+            font-size: 3rem;
+            line-height: 3rem;
+            color: burlywood;
+        }
+
+        footer {
+            display: inline-block;
+            width: 50vw;
+            text-align: left;
+            margin: 50px;
+        }
+
+        #box {
+            display: inline-block;
+            width: 30vw;
+            height: 30vw;
+            line-height: 10vw;
+            letter-spacing: -2vw;
+            text-align: center;
+            margin: 3vw;
+            border-radius: 10px;
+            font-size: 10vw;
+            border: 5px solid tomato;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <h1 class="h1"> JS øvelse 4 </h1>
+            <h3 class="h1"> Sur - glad </h3>
+        </header>
+        <main>
+            <section>
+                <div id="box"> </div>
+            </section>
+        </main>
+        <footer>
+            <h5>1 - Instrukser Overblik</h5>
+            <p> Denne laver du stor set uden instrukser.
+                <br> Vi har 1 boks med id "#box". I den lægger du et lille billede af fx. digselv - som sur - og når man klikker skal det skiftes ud med et andet lille billede fx. af dig selv som glad.
+                <br> Du må selv om du lægger det ind som billede eller som baggrundsbillede. Javascripten i klik-funktionen vil dog blive forskellig afhængig af din metode.
+            </p>
+            <h5>2 - Den sværere.. </h5>
+            <p> Klik-funktionen skal "toggle"..
+                <br> Du kan vente til du har code-campet dig frem til if-else og booleans (true-false variabler) -
+                <br> Eller - du kan google dig frem til classList.toggle.
+                <br> GOD ARBEJDSLYST
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener("load", start);
+
+        function start() {
+            let glad;
+            console.log("start");
+            document.querySelector("#box").innerHTML=`<img src="http://helf-kea.dk/test/frog.png">`;
+            glad=true;
+            document.querySelector("#box").addEventListener("click", skift);
+            function skift(){
+                if(glad){
+                    document.querySelector("#box").innerHTML=`<img src="http://helf-kea.dk/test/fox.png">`;
+                    glad=false;
+                }else{
+                    document.querySelector("#box").innerHTML=`<img src="http://helf-kea.dk/test/frog.png">`;
+                    glad=true;
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

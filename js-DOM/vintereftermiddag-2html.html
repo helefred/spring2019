@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-2</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Optima, sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8rem;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .h1 {
+            padding: 0;
+            margin: 0 0 3rem 0;
+            font-size: 3rem;
+            line-height: 3rem;
+            color: burlywood;
+        }
+
+        footer {
+            display: inline-block;
+            width: 50vw;
+            text-align: left;
+            margin: 50px;
+        }
+
+        #butWrapper {
+            display: inline-block;
+            width: 30vw;
+            height: 30vw;
+            margin: 50px;
+        }
+
+        #bigBut {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30vw;
+            height: 30vw;
+            border: 1px solid silver;
+            border-radius: 30vw;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <h1 class="h1"> JS øvelse 2 </h1>
+        </header>
+        <main>
+            <section id="butWrapper">
+                <div id="bigBut">
+                    Hover mig !
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        let bigBut = document.querySelector("#bigBut");
+        let startText = bigBut.textContent;
+        let myText = "Tak - du kan godt gå nu :)";
+
+        window.addEventListener("load", start);
+
+        function start() {
+            console.log("start");
+            bigBut.addEventListener("mouseover", onMouseOver);
+            bigBut.addEventListener("mouseout", onMouseOut);
+        }
+
+        function onMouseOver() {
+            bigBut.textContent = myText;
+        }
+
+        function onMouseOut() {
+            bigBut.textContent = startText;
+        }
+
+    </script>
+</body>
+
+</html>
