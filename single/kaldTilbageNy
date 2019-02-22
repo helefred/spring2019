@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Visalle</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html{margin:0; padding:0;}
+            img {height: 100px;} 
+            
+            #liste{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 50%; margin: auto;
+                grid-gap: 3px;
+            }
+            .person{
+                padding: 20px; background-color:lightgray;
+            }
+
+            .menu{text-align: center; margin-bottom: 20px;}
+            .valgt{background-color: red;}
+            h1{text-align: center;}
+/*
+            #popup{display: none; height: 100vh; width: 100vw; position:fixed; background-color: red; top:0; left:0;}
+            #popup .indhold{ width: 50%; margin:auto;padding:20px; }
+            #popup .indhold img{height: 400px; }
+*/
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Alle</h1>
+            <nav class="menu">
+                <button class="filter valgt" data-hold="alle">Alle</button>
+                <button class="filter" data-hold="a">Hold A</button>
+                <button class="filter" data-hold="b">Hold B</button>
+            </nav>
+        </header>
+        <main>
+            <section id="liste"></section>
+        </main>
+<!--
+        <div id="popup">
+            <div id="luk">
+                <button>X</button>
+            </div>
+            <div class="indhold"></div>
+        </div>
+-->
+        <script>
+            let personer=[];
+            let filter="alle";
+            document.addEventListener("DOMContentLoaded", start);
+            function start(){
+                let dest=document.querySelector("#liste");
+                let popup = document.querySelector("#popup");
+                async function getJson(){
+                    let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                    personer=await jsonData.json();
+                    personer.sort((a, b) => {return a.navn.localeCompare(b.navn);})
+                    visPersoner();
+                }
+                 function visPersoner(){ 
+                    dest.textContent=""; 
+                    personer.forEach((person, i) =>{
+                       if(filter=="alle" || filter==person.hold){                        
+                            let template=`
+                                <article class="person">
+                                    <h2>${person.navn}</h2>
+                                    <img class="billede" src="${person.billede}" alt="${person.navn}">
+                                    <p>
+                                        Github: <a href="http://github.com/${person.github}" target="_blank">${person.github}</a>
+                                    </p>
+                                    <p>Hold: ${person.hold}, Alder:${person.alder} </p>
+                                </article>
+                            `;
+                            dest.insertAdjacentHTML('beforeend', template);//brug insertAdjacentHTML, som ikke smadrer eventListeners
+                            dest.lastElementChild.addEventListener("click",()=>{location.href="singleNy.html?github="+person.github});
+                            
+//                            function åbnPopup(){
+//                                popup.style.display="block";
+//                                popup.querySelector(".indhold").innerHTML="";
+//                                template = `
+//                                    <h1>${person.navn}</h1>
+//                                    <p>
+//                                        <img src="${person.billede}" alt="${person.navn}">
+//                                    </p>
+//                                    <p>${person.historie}</p>//osv osv
+//                                `;
+//                                popup.querySelector(".indhold").insertAdjacentHTML('beforeend', template);
+//                            };
+                        }
+                    });
+                } 
+//                document.querySelector("#luk button").addEventListener("click",()=>{
+//                    popup.style.display="none";
+//                })
+//                
+                
+                document.querySelectorAll(".filter").forEach(elm =>{
+                    elm.addEventListener("click", filtrering);
+                })
+                function filtrering(){
+                    filter=this.getAttribute("data-hold");
+                    visPersoner();
+                    document.querySelector("h1").textContent=this.textContent;
+                    document.querySelectorAll(".filter").forEach(elm =>{
+                        elm.classList.remove("valgt");
+                    })
+                    this.classList.add("valgt");
+                }
+                getJson();
+            }
+        </script>
+    </body>
+</html>

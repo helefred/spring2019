@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alle</title>
+    <style>
+        .typo {
+            font-family: monospace;
+            color: darkblue;
+            line-height: 150%;
+        }
+        .typo2 {
+            font-family: monospace;
+            font-size:2em;
+            color: darkblue;
+            line-height: 150%;
+        }
+        button{cursor:pointer;}
+    </style>
+
+</head>
+
+<body>
+    <button>RESET</button>
+    <h3>En</h3>
+    <p>Gochujang blue bottle iPhone quinoa, umami lumbersexual semiotics disrupt coloring book squid. Tilde banjo flannel PBR&B umami vape plaid occupy prism lumbersexual man braid. </p>
+    <h3>Lille</h3>
+    <p>Fam before they sold out edison bulb, la croix sartorial cray poke yuccie copper mug ugh. Kickstarter yr tumblr synth.</p>
+    <h3>Bitte</h3>
+    <p>Selvage authentic heirloom put a bird on it umami sustainable bitters meh bicycle rights kombucha af squid. DIY air plant drinking vinegar XOXO raw denim ethical semiotics. </p>
+    <h3>Smule</h3>
+    <p>Roof party tumeric next level etsy church-key plaid. Fashion axe deep v tumeric kickstarter tofu narwhal direct trade. Hexagon gentrify pitchfork ethical echo park. </p>
+    <h3>Tekst</h3>
+    <p>Hella unicorn pinterest organic. Hot chicken activated charcoal chia you probably haven't heard of them slow-carb fingerstache microdosing sartorial four loko etsy yr locavore. Edison bulb trust fund try-hard salvia direct trade tbh.</p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+            function start(){
+                let alleP=document.querySelectorAll("p");
+                let alleH3=document.querySelectorAll("h3");
+                let knap=document.querySelector("button");
+
+                alleP.forEach(elm => {
+                    elm.addEventListener("click", (elem)=>{
+                        elem.classList.add("typo");
+                    })
+                });
+
+                alleH3.forEach(elm => {elm.addEventListener("click", typo2styling)});
+                function typo2styling(){
+                    this.classList.add("typo2");
+                };
+
+                knap.addEventListener("click", reset);
+                function reset(){
+                    alleP.forEach(elm => {
+                        elm.classList.remove("typo");
+                    });
+                    alleH3.forEach(elm => {
+                        elm.classList.remove("typo2");
+                    });
+                }
+            }
+
+    </script>
+</body>
+
+</html>

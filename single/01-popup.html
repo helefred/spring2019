@@ -5,50 +5,31 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            html, body,*{margin:0; padding:0; font-family: sans-serif}
-
+            *{margin:0; padding:0}
+            img {height: 100px;}
             #liste{
                 width: 70vw;
                 margin:auto;
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr ;
                 grid-gap: 1px;
             }
             .person{
                 background-color: #ddd;
                 padding: 20px;
             }
-            .person img{height: 100px;}
             .menu{text-align: center; margin-bottom: 20px;}
             .valgt{background-color: red;}
             h1{text-align:center; }
-            #popup{
-                box-sizing: border-box;
-                width: 100vw;
+            #popup{width: 100vw;
                 height:100vh;
-                background-color: darkgray;
-                display:none;
-                position:absolute;
+                position: fixed;
+                background-color: red;
             }
-            #indhold {
-                box-sizing: border-box; background-color:lightgray;
-                width: 500px; max-height: 90vh; margin:auto;
-
-            }
-            #indhold .billede{max-height: 75vh; overflow:hidden;}
-            #indhold  img{
-                width: 96%;padding:2%; height: auto;
-                display: relative;
-            }
-            #luk{box-sizing: border-box;text-align: right; padding-right: 1em;}
-            #luk button{font-size: 2em;}
         </style>
     </head>
     <body>
-        <div id="popup">
-            <div id="luk"><button>X</button></div>
-            <div id="indhold"></div>
-        </div>
+        <div id="popup"></div>
         <header>
             <h1>Alle</h1>
             <nav class="menu">
@@ -68,7 +49,6 @@
             document.addEventListener("DOMContentLoaded", start);
             function start(){
                 let dest=document.querySelector("#liste");
-                let popup=document.querySelector("#popup");
                 async function getJson(){
                     let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
                     personer=await jsonData.json();
@@ -79,42 +59,19 @@
                     dest.innerHTML="";
                     personer.forEach(person =>{
                         if(filter=="alle" || filter==person.hold){
-                            let template= `
+                            dest.innerHTML += `
                                 <article class="person">
                                     <h2>${person.navn}</h2>
                                     <img class="billede" src="${person.billede}" alt="${person.navn}">
                                     <p>
-                                        Github:
-                                        <a href="http://github.com/${person.github}" target="_blank">
-                                            ${person.github}
-                                        </a>
+                                        Github: <a href="http://github.com/${person.github}" target="_blank">${person.github}</a>
                                     </p>
-                                    <p>Hold: ${person.hold}</p>
+                                    <p>Hold: ${person.hold}, Alder:${person.alder} </p>
                                 </article>
                             `;
-                            dest.insertAdjacentHTML("beforeend",template);
-                            dest.lastElementChild.addEventListener("click", åbn);
-                            function åbn(){
-                                document.querySelector("#indhold").innerHTML= `
-                                <article class="person">
-                                    <h2>${person.navn}</h2>
-                                    <div class="billede">
-                                        <img src="${person.billede}" alt="${person.navn}">
-                                    </div>
-                                    <h3>${person.navn}'s historie</h3>
-                                    <p>${person.historie}</p>
-                                </article>
-                                `;
-                                popup.style.display="block";
-                                document.body.style.overflow="hidden";
-                            }
                         }
                     })
                 } //function visPersoner slut
-                document.querySelector("#luk button").addEventListener("click",()=>{
-                    popup.style.display="none";
-                    document.body.style.overflow="auto";
-                })
                 document.querySelectorAll(".filter").forEach(elm =>{
                     elm.addEventListener("click", filtrering);
                 })

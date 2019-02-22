@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Visalle</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            html, body,*{margin:0; padding:0; font-family: sans-serif}
+
+            #liste{
+                width: 70vw;
+                margin:auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 1px;
+            }
+            .person{
+                background-color: #ddd;
+                padding: 20px;
+            }
+            #liste .person img{height: 100px;}
+            .menu{text-align: center; margin-bottom: 20px;}
+            .valgt{background-color: red;}
+            h1{text-align:center; }
+            #popup{ /*Popup-vinduet åbnes, når der klikkes på en person */
+                box-sizing: border-box;
+                width: 100vw;/*Popup-vinduet fylder hele vinduet*/
+                height:100vh;
+                background-color: rgba(200,200,200,0.9);
+                display:none; /*Popup-vinduet er som udgangspunkt lukket */
+                position:fixed;/*Popup-vinduet skal placere sig ovenpå sidens øvrige indhold*/
+            }
+            #indhold { /*Popup-vinduets indhold udfyldes dynamisk */
+                box-sizing: border-box; background-color:lightgray;
+                width: 500px; max-height: 90vh; margin:auto;
+
+            }
+            #indhold .billede{/* Container-element for billedet */
+                max-height: 75vh; /* Containeren må højst være 75 vh højt */
+                overflow:hidden;/* Fylder billedet mere, croppes det */
+            }
+            #indhold  img{
+                width: 96%; padding:2%;
+            }
+            #luk{ /* Container-element for luk-knappen */
+                box-sizing: border-box;
+                text-align: right; /* Luk-knappen vises i højre side */
+                padding-right: 2em;
+            }
+            #luk button{font-size: 2em;}
+        </style>
+    </head>
+    <body>
+        <div id="popup"><!-- Pop-up vindue til single-view-->
+            <div id="luk"><button>X</button></div><!-- Pop-up vinduets lukkeknap-->
+            <div id="indhold"></div><!-- Pop-up vinduets indhold skal indlæses dynamisk-->
+        </div>
+        <header>
+            <h1>Alle</h1>
+            <nav class="menu"><!--Filtreringsmenu-->
+                <button class="filter valgt" data-hold="alle">Alle</button>
+                <!--filtreringsknapperness data-attribut indeholder den værdi, der skal filtrers på-->
+                <button class="filter" data-hold="a">Hold A</button>
+                <button class="filter" data-hold="b">Hold B</button>
+            </nav>
+        </header>
+
+        <main >
+            <section id="liste"></section><!--Tom liste - her skal personerne dynamisk indlæses -->
+        </main>
+
+        <script>
+            let personer=[]; //tomt array - her skal personerne fra json-filen lægges
+            document.addEventListener("DOMContentLoaded", start); // Programmet går igang, når DOM er loaded.
+            function start(){
+                let filter="alle"; //alle skal vises som udgangspunkt
+                let dest=document.querySelector("#liste"); //#liste, den tomme liste
+                let popup=document.querySelector("#popup");//#popup, popup-vinduet
+                async function getJson(){
+                    let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                    personer=await jsonData.json();
+                    personer.sort((a, b) => {return a.navn.localeCompare(b.navn);})
+                    visPersoner();
+                } // jsonfilen læses, personobjekterne lægges i personer,
+                                                // det tomme array, og visPersoner() kaldes
+                function visPersoner(){
+                    dest.innerHTML=""; //dest nulstilles/tømmes
+                    personer.forEach(person =>{ // Arrayet personer loopes igennem for hver person
+                        if(filter=="alle" || filter==person.hold){
+                            //variablen template kommer til at indeholde den udfyldte article for personen
+                            let template= `
+                                <article class="person">
+                                    <h2>${person.navn}</h2>
+                                    <img class="billede" src="${person.billede}" alt="${person.navn}">
+                                    <p>
+                                        Github:
+                                        <a href="http://github.com/${person.github}" target="_blank">
+                                            ${person.github}
+                                        </a>
+                                    </p>
+                                    <p>Hold: ${person.hold}</p>
+                                </article>
+                            `;
+                            dest.insertAdjacentHTML("beforeend",template);// template sættes ind i #liste
+                            //en eventListener sættes på personen i #liste - når der klikkes:
+                            dest.lastElementChild.addEventListener("click", ()=>{
+                                //en article udfyldes for personen og sættes i #indhold
+                                document.querySelector("#indhold").innerHTML= `
+                                <article class="person">
+                                    <h2>${person.navn}</h2>
+                                    <div class="billede">
+                                        <img src="${person.billede}" alt="${person.navn}">
+                                    </div>
+                                    <h3>${person.navn}'s historie</h3>
+                                    <p>${person.historie}</p>
+                                </article>
+                                `;
+                                popup.style.display="block";// popup-vinduet vises
+                                document.body.style.overflow="hidden";// scroll-baren fjernes fra vinduet
+                            });
+                        }
+                    }) // personer-array gennemgås person for person, og
+                                                       // en article udfyldes for hver person, og tilføjes
+                                                       // til #liste, hvis de har den rette filter-kategori
+                } //visPersoner slut
+                //når der klikkes på popup-vinduets luk-knap, gøres #popup usynligt
+                document.querySelector("#luk button").addEventListener("click",()=>{
+                    popup.style.display="none";
+                    document.body.style.overflow="auto";
+                })
+                //eventhandler på hver knap i filtreringsmenuen - når der klikkes, kaldes function filtrering()
+                document.querySelectorAll(".filter").forEach(elm =>{
+                    elm.addEventListener("click", filtrering);
+                })
+
+                function filtrering(){
+                    filter=this.getAttribute("data-hold");
+                    document.querySelector("h1").textContent=this.textContent;
+                    document.querySelector("h1").textContent=this.textContent;
+                    document.querySelectorAll(".filter").forEach(elm =>{
+                        elm.classList.remove("valgt");
+                    })
+                    this.classList.add("valgt");
+                    visPersoner();
+                }// Variablen filter får værdi efter filtreringsknappens data-attribut-værdi.
+                                            // function visPersoner() kaldes.
+                getJson(); //function getJson kaldes. Her går det hele i gang.
+            }
+        </script>
+    </body>
+</html>
