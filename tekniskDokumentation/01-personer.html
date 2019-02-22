@@ -5,19 +5,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            html, body,*{margin:0; padding:0}
-            img {height: 100px;}
+            html, body,*{margin:0; padding:0; font-family: sans-serif}
+
             #liste{
                 width: 70vw;
                 margin:auto;
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr ;
+                grid-template-columns: 1fr 1fr 1fr;
                 grid-gap: 1px;
             }
             .person{
                 background-color: #ddd;
                 padding: 20px;
             }
+            .person img{height: 100px;}
             .menu{text-align: center; margin-bottom: 20px;}
             .valgt{background-color: red;}
             h1{text-align:center; }
@@ -25,19 +26,22 @@
                 box-sizing: border-box;
                 width: 100vw;
                 height:100vh;
-                position: fixed;
-                background-color: red;
+                background-color: darkgray;
                 display:none;
+                position:absolute;
             }
             #indhold {
                 box-sizing: border-box; background-color:lightgray;
-                width: 90vw; height: 90vh; margin:auto;
+                width: 500px; max-height: 90vh; margin:auto;
 
+            }
+            #indhold .billede{max-height: 75vh; overflow:hidden;}
+            #indhold  img{
+                width: 96%;padding:2%; height: auto;
+                display: relative;
             }
             #luk{box-sizing: border-box;text-align: right; padding-right: 1em;}
             #luk button{font-size: 2em;}
-
-            #indhold img{height: 300px;}
         </style>
     </head>
     <body>
@@ -64,6 +68,7 @@
             document.addEventListener("DOMContentLoaded", start);
             function start(){
                 let dest=document.querySelector("#liste");
+                let popup=document.querySelector("#popup");
                 async function getJson(){
                     let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
                     personer=await jsonData.json();
@@ -93,18 +98,22 @@
                                 document.querySelector("#indhold").innerHTML= `
                                 <article class="person">
                                     <h2>${person.navn}</h2>
-                                    <img class="billede" src="${person.billede}" alt="${person.navn}">
+                                    <div class="billede">
+                                        <img src="${person.billede}" alt="${person.navn}">
+                                    </div>
                                     <h3>${person.navn}'s historie</h3>
-
+                                    <p>${person.historie}</p>
                                 </article>
                                 `;
-                                document.querySelector("#popup").style.display="block";
+                                popup.style.display="block";
+                                document.body.style.overflow="hidden";
                             }
                         }
                     })
                 } //function visPersoner slut
                 document.querySelector("#luk button").addEventListener("click",()=>{
-                    document.querySelector("#popup").style.display="none";
+                    popup.style.display="none";
+                    document.body.style.overflow="auto";
                 })
                 document.querySelectorAll(".filter").forEach(elm =>{
                     elm.addEventListener("click", filtrering);
