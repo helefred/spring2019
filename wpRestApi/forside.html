@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forside</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <nav>
+            Menu:
+            <a href="forside.html">Forside</a>
+            <a href="menu.html">Menu</a>
+            <a href="omos.html">Om os</a>
+            <a href="kontakt.html">Kontakt</a>
+        </nav>
+
+        <h1 class="overskrift"></h1>
+
+        <main class="indhold"></main>
+
+        <script>
+            let indhold;
+
+            document.addEventListener("DOMContentLoaded", start);
+
+            function start(){
+
+                async function getJson(){
+                    let jsonData = await fetch("http://helf-kea.dk/babushkaWP/wordpress/wp-json/wp/v2/pages/8");
+                    indhold=await jsonData.json();
+                    visIndhold();
+                } //end of async function getJson
+
+                function visIndhold(){
+                    document.querySelector(".overskrift").textContent=indhold.title.rendered;
+                    document.querySelector(".indhold").innerHTML=indhold.content.rendered;
+                } //end of function visIndhold
+
+                getJson();
+            } //end of function start
+        </script>
+    </body>
+</html>
