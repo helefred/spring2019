@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+
+</head>
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <h1 class="desktop-logo hide-mobile">Kitchen Tailor</h1>
+            <h1 class="mobil-logo hide-desktop">Kitchen <br> Tailor</h1>
+        </a>
+        <div class="menu-punkter">
+            <div class="hide-mobile">
+                <a href="koekkener.html">
+                    <h4>Køkkener</h4>
+                </a>
+                <a href="bad.html">
+                    <h4>Bad</h4>
+                </a>
+                <a href="garderobe.html">
+                    <h4>Garderobe</h4>
+                </a>
+                <a href="opbevaring.html">
+                    <h4>Opbevaring</h4>
+                </a>
+            </div>
+            <a href="kontakt.html" class="mobil-book">
+                <img src="billeder/Kalender.svg" alt="kalender" class="kalender-icon">
+                <h4>Book Møde</h4>
+            </a>
+            <div id="mobil-burger" class="burger-container hide-desktop">
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <h4 class="opened">Menu</h4>
+                <h4 class="hide closed">Luk Menu</h4>
+            </div>
+            <div id="desktop-burger" class="burger-container hide-mobile">
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div id="overlay" class="mobil-overlay hide-desktop">
+        <div class="top-container">
+            <div class="mobil-hoved-menupunkter">
+                <a href="koekkener.html">Køkkener</a>
+                <a href="bad.html">Bad</a>
+                <a href="garderobe.html">Garderobe</a>
+                <a href="opbevaring.html">Opbevaring</a>
+                <a href="meet-your-tailor.html">Mød din tailor</a>
+                <a href="kitchen-care.html">Kitchen care</a>
+                <a href="meet-your-maker.html">Mød din snedker</a>
+                <a href="kontakt.html">Kontakt</a>
+
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Søg efter ting her...">
+            </div>
+        </div>
+        <div class="bot-container">
+            <div class="mobil-sub-menupunkter">
+                <a href="#">Hvorfor kitchen tailor?</a>
+                <a href="#">Åbningstider</a>
+                <a href="#">Vejledning</a>
+                <a href="#">Erhverv</a>
+                <a href="#">Markedsplads</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Job</a>
+                <a href="#">Garanti</a>
+            </div>
+            <div class="mobil-menu-some"></div>
+        </div>
+    </div>
+    <div id="desk-overlay" class="desk-overlay hide-mobile-block">
+        <div class="desk-top-container">
+            <div class="desk-hoved-menupunkter">
+                <a href="meet-your-tailor.html">Mød din tailor</a>
+                <a href="kitchen-care.html">Kitchen care</a>
+                <a href="meet-your-maker.html">Mød din snedker</a>
+                <a href="kontakt.html">Kontakt</a>
+
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Søg efter ting her...">
+            </div>
+        </div>
+        <div class="desk-bot-container">
+            <div class="desk-sub-menupunkter">
+                <a href="#">Hvorfor kitchen tailor?</a>
+                <a href="#">Åbningstider</a>
+                <a href="#">Vejledning</a>
+                <a href="#">Erhverv</a>
+                <a href="#">Markedsplads</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Job</a>
+                <a href="#">Garanti</a>
+            </div>
+            <div class="desk-menu-some"></div>
+        </div>
+    </div>
+
+    <div class="filter-mobil hide-desktop">
+        <div class="stil-filter-mobil">
+            <div class="stil-container">
+                <h4>Stil</h4>
+                <div class="plus-tegn-stil"></div>
+                <div class="minus-tegn-stil hide"></div>
+            </div>
+            <div class="stilarter hide">
+                <p class="stil-alle filter_stil stil-valgt" data-stil="alle">Alle</p>
+                <p class="stil-klassisk filter_stil" data-stil="klassisk">Klassisk</p>
+                <p class="stil-enkelt filter_stil" data-stil="enkelt">Enkelt</p>
+                <p class="stil-vildt filter_stil" data-stil="vildt">Vildt</p>
+            </div>
+        </div>
+        <div class="farver-filter-mobil">
+            <div class="farver-container">
+                <h4>Farver</h4>
+                <div class="plus-tegn-farver"></div>
+                <div class="minus-tegn-farver hide"></div>
+            </div>
+            <div class="farver hide">
+                <div class="farve farve1 filter-farve farve-valgt" data-farve="alle_farver"></div>
+                <div class="farve farve2 filter_farve" data-farve="white"></div>
+                <div class="farve farve3 filter_farve" data-farve="grey"></div>
+                <div class="farve farve4 filter_farve" data-farve="black"></div>
+                <div class="farve farve5 filter_farve" data-farve="light_brown"></div>
+                <div class="farve farve6 filter_farve" data-farve="dark_brown"></div>
+                <div class="farve farve7 filter_farve" data-farve="green"></div>
+                <div class="farve farve8 filter_farve" data-farve="blue"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-desktop hide-mobile-block">
+        <div class="stil-filter-desktop">
+            <div class="stil-container">
+                <h4>Stil</h4>
+            </div>
+            <div class="stilarter">
+                <p class="stil-alle filter_stil stil-valgt" data-stil="alle">Alle</p>
+                <p class="stil-klassisk filter_stil" data-stil="klassisk">Klassisk</p>
+                <p class="stil-enkelt filter_stil" data-stil="enkelt">Enkelt</p>
+                <p class="stil-vildt filter_stil" data-stil="vildt">Vildt</p>
+            </div>
+        </div>
+        <div class="farver-filter-desktop">
+            <div class="farver-container">
+                <h4>Farver</h4>
+            </div>
+            <div class="farver">
+
+
+                <div class="farve farve1 filter_farve" data-farve="alle_farver"></div>
+                <div class="farve farve2 filter_farve" data-farve="white"></div>
+                <div class="farve farve3 filter_farve" data-farve="grey"></div>
+                <div class="farve farve4 filter_farve" data-farve="black"></div>
+                <div class="farve farve5 filter_farve" data-farve="light_brown"></div>
+                <div class="farve farve6 filter_farve" data-farve="dark_brown"></div>
+                <div class="farve farve7 filter_farve" data-farve="green"></div>
+                <div class="farve farve8 filter_farve" data-farve="blue"></div>
+            </div>
+        </div>
+    </div>
+    <h2 class="find-kokken">Find dit nye køkken i dag</h2>
+    <section class="kokken-container">
+
+    </section>
+    <footer>
+        <div class="topbar">
+            <h1>Kitchen Tailor</h1>
+            <button>Book Møde <img src="billeder/Kalender.svg" alt="Kalender"></button>
+            <div class="footer-some">
+                <a href=""><img src="billeder/facebook.png" alt="facebook"></a>
+                <a href=""><img src="billeder/instagram.png" alt="instagram"></a>
+                <a href=""><img src="billeder/twitter.png" alt="twitter"></a>
+            </div>
+        </div>
+        <div class="footer-grid">
+            <div class="footer-hovedsider">
+                <h4>Hovedsider</h4>
+                <div class="hovedsider-links">
+                    <a href="koekkener.html">Køkkener</a>
+                    <a href="bad.html">Bad</a>
+                    <a href="garderobe.html">Garderobe</a>
+                    <a href="opbevaring.html">Opbevaring</a>
+                    <a href="meet-your-tailor.html">Mød din tailor</a>
+                    <a href="kitchen-care.html">Kitchen care</a>
+                    <a href="meet-your-maker.html">Mød din snedker</a>
+                    <a href="kontakt.html">Kontakt</a>
+                </div>
+            </div>
+            <div class="footer-subsider">
+                <h4>Undersider</h4>
+                <div class="subsider-links">
+                    <a href="#">Hvorfor kitchen tailor?</a>
+                    <a href="#">Åbningstider</a>
+                    <a href="#">Vejledning</a>
+                    <a href="#">Erhverv</a>
+                    <a href="#">Markedsplads</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Job</a>
+                    <a href="#">Garanti</a>
+                </div>
+            </div>
+            <div class="footer-adresse">
+                <h4>Find os her</h4>
+                <p>Tegnestue og Showroom<br>
+                    Strandvejen 140<br>
+                    2900 Hellerup</p>
+            </div>
+            <div class="footer-tider">
+                <h4>her har vi åbent</h4>
+                <p> Mandag: Lukket <br>
+                    Tirsdag-Fredag: 10:00-16:30<br>
+                    Lørdag: 10:00-14:00</p>
+            </div>
+        </div>
+    </footer>
+    <template class="kokken-temp">
+        <!-- Template som vi indsætter vores indhold i -->
+        <div class="single-container">
+            <!-- -->
+            <div class="overflow-kokken">
+                <div class="kokken-billede">
+                </div>
+            </div>
+            <div class="kokken-tekst-container">
+                <h2 class="kokken-titel"></h2>
+            </div>
+        </div>
+    </template>
+    <script src="script.js"></script>
+    <script>
+        /* Inline script med vores Json, så det er nemmere at overskue hvilken side det er til i stedet for at ligge det hele i samlet JS dokument */
+        let kokkener = []; /* Variabel med tomt array */
+        let dest = document.querySelector(".kokken-container"); /* Variabel med Destinationen for hvor vores indhold skal sendes hen i vores html */
+        let temp = document.querySelector(".kokken-temp"); /* Variabel som viser hvilken template functionen skal bruge i vores html */
+        let filterStil = "alle";
+        let filterFarve = "alle_farver";
+
+        document.addEventListener("DOMContentLoaded", getJson); /* Eventlistner som sikre sig at alt vores html er loaded før den begynder at kalde scriptet, og vores getJson Function */
+
+        async function getJson() { /* Async function som henter vores Json */
+            const url = "http://martinottesen.dk/kea/2-semester/eksamenwp/wordpress/wp-json/wp/v2/kokkener?per_page=100"; /* En constant som er vores link med vores indhold */
+            const kokkenerJson = await fetch(url); /* en constant som fetcher vores indhold fra vores url constant */
+            kokkener = await kokkenerJson.json(); /* henter vores json indhold ind i vores tomme array */
+
+
+            showKokkener(); /* Kalder vores function som skal få vores indhold vist på siden */
+        }
+
+        function showKokkener() { /* Function som viser vores indhold */
+            dest.innerHTML = "";
+            kokkener.forEach(kokken => {
+                /* vi et loop med for each så vi får sat alle vores array elementer ind i hver deres template/section */
+                if ((filterStil == "alle" || filterStil == kokken.stil) ) {
+                    console.log(filterStil +" "+kokken.stil)
+                    console.log(filterFarve +" "+kokken.farve)
+                    if(filterFarve == "alle_farver" || filterFarve == kokken.farve){
+                        console.log("Bingo: "+filterFarve +" "+kokken.farve)
+                        let klon = temp.cloneNode(true).content; /* variabel som siger kloning af template-taggets indhold. */
+
+                        klon.querySelector(".kokken-titel").innerHTML = kokken.title.rendered; /* Indsætter titlen på køkkenet ind i vores H2 i vores template */
+                        klon.querySelector(".kokken-billede").style.backgroundImage = `url(${kokken.splash_billede.guid})`; /* Tilføjer et baggrunddsbillede til vores container ".kokken-billede" ved hjælp af JS style */
+
+                        dest.appendChild(klon); /* tilføj klonen til main variablen dest (main tagget) */
+
+                        dest.lastElementChild.addEventListener("click", () => {
+                            location.href = "kokken.html?titel=" + kokken.title.rendered;
+                        })
+
+                    }
+                }
+
+            })
+        }
+
+        document.querySelectorAll(".filter_stil").forEach(but => {
+            but.addEventListener("click", filtreringStil);
+
+        })
+
+        document.querySelectorAll(".filter_farve").forEach(but => {
+
+            but.addEventListener("click", filtreringFarve);
+        })
+
+        function filtreringStil() {
+            document.querySelectorAll(".filter_stil").forEach(but => {
+                but.classList.remove("stil-valgt");
+            })
+            this.classList.add("stil-valgt");
+            filterStil = this.getAttribute("data-stil");
+            alert(filterStil)
+            showKokkener();
+        }
+
+        function filtreringFarve() {alert(this.getAttribute("data-farve"))
+
+            document.querySelectorAll(".filter_farve").forEach(but => {
+                but.classList.remove("farve-valgt");
+            })
+            this.classList.add("farve-valgt");
+            filterFarve = this.getAttribute("data-farve");
+             alert(filterFarve)
+            showKokkener();
+        }
+
+        document.querySelector(".stil-container").addEventListener("click", () => {
+            document.querySelector(".plus-tegn-stil").classList.toggle("hide");
+            document.querySelector(".minus-tegn-stil").classList.toggle("hide");
+            document.querySelector(".stilarter").classList.toggle("hide");
+        })
+        document.querySelector(".farver-container").addEventListener("click", () => {
+            document.querySelector(".plus-tegn-farver").classList.toggle("hide");
+            document.querySelector(".minus-tegn-farver").classList.toggle("hide");
+            document.querySelector(".farver").classList.toggle("hide");
+        })
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
